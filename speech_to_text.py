@@ -1,5 +1,7 @@
+import webbrowser
 import speech_recognition as sr
-import pyttsx3 
+import pyttsx3
+
 from Intent_Detection import Intent
 
 
@@ -23,8 +25,8 @@ class Speak:
         intent = Intent()
         predict = intent.Predict(command)
         if predict == 'play_music':
-            print('World is so ....')
-    
+            webbrowser.open('https://youtu.be/dlITmXwyqcU?si=YUl4ylhrOHBybGpw')
+
     def record(self):
         """Loop infinitely for user to speak"""
 
