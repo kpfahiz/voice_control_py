@@ -1,8 +1,11 @@
 import speech_recognition as sr
 import pyttsx3 
+from Intent_Detection import Intent
+
 
 class Speak:
     def __init__(self):
+
         # Initialize the recognizer 
         self.recognizer = sr.Recognizer() 
     
@@ -11,10 +14,16 @@ class Speak:
         """
         Function to convert text to speech
         """
-        """Initialize the engine"""
+        #Initialize the engine
         engine = pyttsx3.init()
         engine.say(command) 
         engine.runAndWait()
+
+    def action(self, command):
+        intent = Intent()
+        predict = intent.Predict(command)
+        if predict == 'play_music':
+            print('World is so ....')
     
     def record(self):
         """Loop infinitely for user to speak"""
@@ -37,8 +46,9 @@ class Speak:
                     MyText = self.recognizer.recognize_google(audio2)
                     MyText = MyText.lower()
 
-                    print('Did you say ',MyText)
+                    print(MyText)
                     self.SpeakText(MyText)
+                    self.action(MyText)
             
             except sr.RequestError as e:
                 print(f'Could not request results; {e}')
